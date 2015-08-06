@@ -3,7 +3,11 @@
 #include <stdlib.h>
 #include <math.h>
 
+/* This contains useful functions for the project euler problems. */
+
+
 // returns the fibonacci sequence of lenth N
+// array *needs* to be freed when called.
 int * fibonacci(int N)
 {
   int *F = malloc(N*sizeof(int));
@@ -21,6 +25,7 @@ int * fibonacci(int N)
 
 
 // A function that returns an array of prime factors of n
+// array *needs* to be freed when called.
 int * primes(int n)
 {
   int *P = malloc(n*sizeof(int));
@@ -53,18 +58,42 @@ int * primes(int n)
 }
 
 
+// gcd function
+int gcd(int a, int b)
+{
+  int tmp = 0;
+  if(a < b)
+    {
+      tmp = a;
+      a = b;
+      b = tmp;
+    }
+        
+  while(b)
+    {
+      tmp = a;
+      a = b;
+      b = tmp % b;
+    }
+  return a;
+}
+
+
+// exponentiation of ints
+int int_pow(int base, int exp)
+{
+  if(exp == 0) return 1;
+  if(exp == 1) return base;
+  return base * int_pow(base, exp - 1);
+}
+
+
+// test function
 int main(int argc, char *argv[])
 {
 
-  int i = 0;
-  int N = atoi(argv[1]);
+  int N = atoi(argv[1]); int M = atoi(argv[2]);
+  printf("%d", gcd(N,M));
 
-  int *P = primes(N);
-  int n = sizeof(P)/sizeof(int);
-  while(P[i] != 0)
-    {
-      printf("%d ", P[i]);
-      i++;
-    }
   return 0;
 }
