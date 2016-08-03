@@ -6,6 +6,7 @@
 # => [2,6,6,2,5,1,2,2,0] (zero indexed elements from succesive elements you can
 # draw from at each stage
 
+from __future__ import print_function
 
 def get_lex_perm(k, charString):
     '''get's the (0-indexed) kth permutation of charString in Lexicographic order.'''
