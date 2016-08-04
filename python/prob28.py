@@ -1,4 +1,5 @@
 
+from __future__ import print_function
 import itertools as it
 
 
@@ -43,3 +44,8 @@ def print_grid(size=10):
     ):
         row = '|'.join([ '%3d' % D[y] for y in x[1]])
         print('%s' %row)
+
+if __name__ == '__main__':
+    D = make_grid(1000)
+    N = sum(x for (k,x) in D.items() if (sum(k) == 0 or k[0] == k[1]))
+    print(N)
