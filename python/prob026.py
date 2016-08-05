@@ -3,8 +3,8 @@ from __future__ import print_function
 
 import itertools as it
 
-# note: if 1/q has repeating decimal expansion of length k, then q|(10^k - 1).
-
+# find the largest repeating cycle in the decimal
+# expansion of 1/d where 0 < d < 1000
 
 def decimal_cycle_length(d):
     dividend = 10*(1 - (1//d)*d)
