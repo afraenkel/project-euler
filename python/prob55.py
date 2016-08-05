@@ -3,10 +3,10 @@
 def is_palindrome(x):
     return str(x) == str(x)[::-1]
 
-def not_lychrel(x):
+def not_lychrel(x, cutoff=50):
     """returns number of iteration for a number
     to become a palindrome -- else returns 0"""
-    for k in range(50):
+    for k in range(cutoff):
         x += int(str(x)[::-1])
         if is_palindrome(x):
             return k+1
