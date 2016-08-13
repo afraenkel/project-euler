@@ -1,4 +1,5 @@
 
+import itertools as it
 # Let E(x0, y0) be the number of steps it takes to determine
 # the greatest common divisor of x0 and y0 with Euclid's algorithm.
 
@@ -7,25 +8,47 @@
 
 # Find S(5·10^6).
 
-
-def gcd_steps(a, b):
+def E(a, b):
     k = 0
     while b:
         a, b = b, a%b
         k += 1
-    return k, a
+    return k
 
 
-def E(a,b):
-    return gcd_steps(a,b)[0]
+N = 10
+lens = (x for k in it.count(1) for x in it.repeat(k,2))
+cols = it.count(2)
+d = 0    
+for c,l in zip(cols, lens):
+    first_row = 2*c - l
+    if first_row > N:
+        break
+    for r in range(first_row, first_row + l):
+        if r > N:
+            break
+        f = (r-c)
+        incr = 0
+        while (r+incr) <= N:
+            d += E(r, c)*( (N-c-incr)//(c+incr)  )
+            incr += f
+    d += (N - r + 1) // c
 
+d += (N-1)
+d *= 2
+d += (N-1)*N//2
+d += N
 
+print(d)
 # This starts getting slow at n=1000
 # Use the fact that:
 # (1) E(a,b) = E(b,a)    (obvious)
 # (2) E(a,b) = E(ka, kb) for all a,b,k  (clear from euclid algo)
+# above is not enough
 
-# partition plane into pieces generated using above relations.
+# probably compute a bunch of gcd steps at each step using memoizing
+
+
 def S(n):
     d = 0
     for x in range(1,n+1):
@@ -33,3 +56,4 @@ def S(n):
             d += E(x,y)
 
     return d
+
