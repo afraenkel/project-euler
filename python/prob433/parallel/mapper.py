@@ -11,7 +11,9 @@ def E(a, b):
     while b:
         a, b = b, a%b
         k += 1
+    
     return k
+
 
 for line in sys.stdin:
     c = int(line.strip())

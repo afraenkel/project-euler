@@ -1,10 +1,8 @@
 #!/bin/bash
 
 N=$1
-# Using GNU parallel -- only with a large box!
-seq $N |\
-    parallel --pipe -N 50 --round-robin -j50 parallel -j50 --block 10k ./mapper.py |\
-    ./reducer.py
+# Using GNU parallel
+seq $N | parallel --pipe -j4 ./mapper.py | ./reducer.py
 
 # using hadoop-streaming
 # seq $N > nums
