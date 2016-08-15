@@ -7,4 +7,4 @@ must be computed.
 * The other colors show where identical steps appear. They propogate
 vertically and diagonally.
 * The top vertex is the coordinate (2,1)
-![](png)
+![](triangle.png)
